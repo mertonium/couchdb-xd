@@ -32,7 +32,7 @@
 		else if (instance.iFrame.attachEvent)
 			instance.iFrame.attachEvent("onload", onloadHandler);
 
-		instance.iFrame.src = instance.origin + "/couchdb-xd/_design/couchdb-xd/receiver.html";
+		instance.iFrame.src = instance.origin + "/apps/_design/couchdb-xd/receiver.html";
 		if (typeof onload == "function") {
 			instance.onload = onload;
 			instance.init();
@@ -92,7 +92,7 @@
 		},
 
 		defaultRequestMethod: "GET", // default request method
-		//defaultContentType: "application/x-www-form-urlencoded", default content-type header (ie. POST requests, ect.)
+		//defaultContentType: "application/x-www-form-urlencoded", //default content-type header (ie. POST requests, ect.)
 		//defaultTimeout: 60000, // optional default timeout at which the request recives a TIMEOUT error (60000 ms = 1 minute)
 
 		request: function(req) { // send a request to a pmxdr host
