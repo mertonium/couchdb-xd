@@ -61,13 +61,22 @@ window.Couch = (function() {
         // If we're not doing a POST or PUT, params should be placed
         // on query string instead. This should probably be done inside
         // the pmxdr lib.
-        if (params.method != 'POST' && params.method != 'PUT') {
+        if (params.method != 'PUT') {
           var queryParams = [];
           for (var k in params.data) {
             queryParams.push(k + '=' + params.data[k]);
           }
-          params.uri += '?' + queryParams.join('&');
-          delete(params.data);
+          if(params.method == 'POST') {
+            params.data = queryParams.join('&');
+            if (!params.headers) {
+              params.headers = {};
+            }
+            params.contentType = "application/x-www-form-urlencoded";
+              
+          } else {
+            params.uri += '?' + queryParams.join('&');
+            delete(params.data);
+          }
         } else {
           params.data = JSON.stringify(params.data);
         }
