@@ -64,14 +64,15 @@ window.Couch = (function() {
         if (params.method != 'PUT') {
           var queryParams = [];
           for (var k in params.data) {
-            queryParams.push(k + '=' + params.data[k]);
+            queryParams.push(k + '="' + params.data[k]+'"');
           }
           if(params.method == 'POST') {
-            params.data = queryParams.join('&');
+            //params.data = queryParams.join('&');
+            params.data = JSON.stringify(params.data);
             if (!params.headers) {
               params.headers = {};
             }
-            params.contentType = "application/x-www-form-urlencoded";
+            params.contentType = 'application/json'
               
           } else {
             params.uri += '?' + queryParams.join('&');
@@ -123,6 +124,10 @@ window.Couch = (function() {
         method: "PUT",
         callback: callback
       });
+    },
+    
+    signup: function(server, name, callback) {
+      
     }
   };
 
